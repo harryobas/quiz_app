@@ -1,3 +1,12 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :quizzes, only: [:new]
+
+  root to: "quizzes#new"
+
+  get "/quizzes/question" => 'quizzes#question', as: 'question'
+
+  post "/quizzes/register" => 'quizzes#register', as: 'register_quiz'
+  post "/quizzes/validate" => 'quizzes#validate_question', as: 'quiz_question_validate'
+
+
 end

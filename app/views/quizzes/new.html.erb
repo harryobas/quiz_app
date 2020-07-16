@@ -1,0 +1,13 @@
+<div>
+  <h2>Start Quiz</h2>
+</div>
+
+<div style="text-align:center">
+  <p><strong>Enter your name to register for a quiz</strong></p>
+     <%= form_with url: register_quiz_path, local: true do |form| %>
+      <%= hidden_field_tag :current_step, 'step1' %>
+      <%=form.label :quiz_taker, for: "quiz_taker"%>
+      <%=form.text_field :quiz_taker, id: "quiz_taker"%>
+      <%=form.submit "Continue"%>
+    <%end%>
+</div>

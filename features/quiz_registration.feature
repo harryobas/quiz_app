@@ -7,5 +7,6 @@ Feature: Quiz Registration
 
 Scenario: register for a quiz 
     Given I visit the homepage
+    And Data store is populated with questions
     When I fill in the registration form
     Then I should see a quiz question
