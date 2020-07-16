@@ -23,4 +23,15 @@ Given('I visit the homepage') do
     expect(page).to have_content('Question')
  
   end
+
+  Given('I submit an empty registration form') do
+   click_button 'Continue'
+  end
+  
+  Then('I should see alert message') do
+    message = "you must enter your name to continue"
+    expect(page).to have_content(message)
+  end
+  
+  
   
