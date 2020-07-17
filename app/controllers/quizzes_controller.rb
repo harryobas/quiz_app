@@ -6,15 +6,28 @@ class QuizzesController < ApplicationController
     def register 
         redirect_to root_path, alert: "you must enter your name to continue" and return unless params[:quiz_taker].present? 
         session[:quiz_taker] = params[:quiz_taker]
-        redirect_to question_path 
+        first_question = Question.all.first
+        redirect_to question_path(first_question.id)
     end
 
     def question
-        @questions ||= Question.all 
-        @question = @questions.first
-        @questions = @questions - [@question] if @question 
+        @question = Question.find(params[:id])
+        
     end
 
-    def validate
+    def validate_question
+        current_ques_id = params[:current_ques_id].to_i
+        session[:answers] ||= []
+        if params[:answer] 
+            session[:answers] << params[:answer] 
+            next_question(current_ques_id)
+        end
+    end
+
+    private 
+
+    def next_question(ques_id)
+        redirect_to question_path(ques_id+1)
+
     end
 end

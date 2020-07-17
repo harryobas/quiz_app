@@ -8,6 +8,7 @@
   <p><strong><%=@question.prompt%></strong></p>
   <div>
     <%= form_with url: quiz_question_validate_path, local: true do |form| %>
+      <%= hidden_field_tag :current_ques_id, "#{@question.id}"%>
      <%=form.radio_button :answer, @question.ans_options[0], class: 'step2-radio'%>
      <%= form.label @question.ans_options[0]%><br>
      <%=form.radio_button :answer, @question.ans_options[1], class: 'step2-radio'%>

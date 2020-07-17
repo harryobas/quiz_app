@@ -5,6 +5,9 @@ Feature: Quiz Registration
     I should be able to register 
     For a quiz with my name 
 
+Background: 
+    Given Data store is populated with questions 
+
 
 Scenario: register for a quiz 
     Given I visit the homepage

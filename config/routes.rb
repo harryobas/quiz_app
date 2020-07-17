@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "quizzes#new"
 
-  get "/quizzes/question" => 'quizzes#question', as: 'question'
+  get "/quizzes/question/:id" => 'quizzes#question', as: 'question'
 
   post "/quizzes/register" => 'quizzes#register', as: 'register_quiz'
   post "/quizzes/validate" => 'quizzes#validate_question', as: 'quiz_question_validate'
