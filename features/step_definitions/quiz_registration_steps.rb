@@ -9,7 +9,6 @@ Given ('Data store is populated with questions') do
     
   end
 
-
 Given('I visit the homepage') do
     visit root_path
   end

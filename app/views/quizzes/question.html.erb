@@ -1,25 +1,28 @@
 <div>
-    <h2>
+    <h3>
         <%="Question #{@question.id}"%>
-    </h2>
+    </h3>
 </div>
 
 <div>
   <p><strong><%=@question.prompt%></strong></p>
   <div>
     <%= form_with url: quiz_question_validate_path, local: true do |form| %>
-      <%= hidden_field_tag :current_ques_id, "#{@question.id}"%>
-     <%=form.radio_button :answer, @question.ans_options[0], class: 'step2-radio'%>
-     <%= form.label @question.ans_options[0]%><br>
-     <%=form.radio_button :answer, @question.ans_options[1], class: 'step2-radio'%>
-     <%= form.label @question.ans_options[1]%><br>
-     <%=form.radio_button :answer, @question.ans_options[2], class: 'step2-radio'%>
-     <%= form.label @question.ans_options[2]%><br>
-     <%=form.radio_button :answer, @question.ans_options[3], class: 'step2-radio'%>
-     <%= form.label @question.ans_options[3]%><br>
-     <%=form.radio_button :answer, @question.ans_options[4], class: 'step2-radio'%>
-     <%= form.label @question.ans_options[4]%><br>
-     <%=form.submit "Next", id: "btnext2", class: "btn btn-default",  data: {disable_with: false}%>
-   <%end%>
-  </div>
+    <%= hidden_field_tag :current_ques_id, "#{@question.id}", id: 'ques-id'%>
+    <%=form.radio_button :answer, @question.ans_options[0], class: 'ans-radio'%>
+    <%= form.label @question.ans_options[0]%><br>
+    <%=form.radio_button :answer, @question.ans_options[1], class: 'ans-radio'%>
+    <%= form.label @question.ans_options[1]%><br>
+    <%=form.radio_button :answer, @question.ans_options[2], class: 'ans-radio'%>
+    <%= form.label @question.ans_options[2]%><br>
+    <%=form.radio_button :answer, @question.ans_options[3], class: 'ans-radio'%>
+    <%= form.label @question.ans_options[3]%><br>
+    <%=form.radio_button :answer, @question.ans_options[4], class: 'ans-radio'%>
+    <%= form.label @question.ans_options[4]%><br>
+     <%if @question.id != 1%>
+     <%=button_tag 'Previous', type: 'button', id: 'prev-ques', onclick: "history.back();", class: "btn btn-primary"%>
+     <%end%>
+    <%=form.submit "Next",  class: "btn btn-primary",  data: {disable_with: false}%>  
+    <%end%>
+  </div>  
 </div>

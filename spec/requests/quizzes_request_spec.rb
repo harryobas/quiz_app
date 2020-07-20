@@ -52,6 +52,20 @@ RSpec.describe "Quizzes", type: :request do
                 expect(response).to redirect_to question_path(@ques_two.id)
             end
         end
+
+        context 'with answer option not selected' do
+            it 're-reners current question' do
+                post quiz_question_validate_path, params: {answer: nil, current_ques_id: "#{@ques_one.id}"}
+                expect(response).to redirect_to question_path(@ques_one.id)
+            end
+        end
+    end
+
+    describe 'review question' do 
+        it 'renders previous question' do
+            post review_question_path, params: {current_ques_id: "#{@ques_two.id}"}
+            expect(response).to redirect_to question_path(@ques_one.id)
+        end
     end
    
 end
